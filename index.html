@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Travis-ci-meteor-packages by grazies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Travis-ci-meteor-packages</h1>
+      <h2 class="project-tagline">Travis CI support for Meteor (Smart) Packages</h2>
+      <a href="https://github.com/grazies/travis-ci-meteor-packages" class="btn">View on GitHub</a>
+      <a href="https://github.com/grazies/travis-ci-meteor-packages/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/grazies/travis-ci-meteor-packages/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="travis-ci-meteor-packages" class="anchor" href="#travis-ci-meteor-packages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>travis-ci-meteor-packages</h1>
+
+<h3>
+<a id="travis-ci-support-for-meteor-smart-packages" class="anchor" href="#travis-ci-support-for-meteor-smart-packages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://meteorhacks.com/travis-ci-support-for-meteor-packages.html">Travis CI support for Meteor (Smart) Packages</a>
+</h3>
+
+<p>Add following file to your meteor package as <code>.travis.yml</code></p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-c">## Add this file to your meteor package as `.travis.yml`</span>
+
+<span class="pl-ent">sudo:</span> <span class="pl-s">required</span>
+<span class="pl-ent">language:</span> <span class="pl-s">node_js</span>
+<span class="pl-ent">node_js:</span>
+  - <span class="pl-s"><span class="pl-pds">"</span>0.10<span class="pl-pds">"</span></span>
+
+<span class="pl-ent">before_install:</span>
+  - <span class="pl-s"><span class="pl-pds">"</span>curl -L https://git.io/ejPSng | /bin/sh<span class="pl-pds">"</span></span>
+
+<span class="pl-ent">env:</span>
+  - <span class="pl-s">CXX=g++-4.8</span>
+<span class="pl-ent">addons:</span>
+  <span class="pl-ent">apt:</span>
+    <span class="pl-ent">sources:</span>
+      - <span class="pl-s">ubuntu-toolchain-r-test</span>
+    <span class="pl-ent">packages:</span>
+      - <span class="pl-s">g++-4.8</span></pre></div>
+
+<p><strong>UPDATE</strong> (2015/03/31) : Please note that the latest version of .travis.yaml now includes "sudo: required" to cope with new permissions constraints in Travis virtual machines.</p>
+
+<p><strong>UPDATE</strong> (2016/08/16) : The latest version of .travis.yaml now includes a compiler to compile the bcrypt NPM module.</p>
+
+<p>Login to <a href="https://travis-ci.org">https://travis-ci.org</a> with Github and navigate to <a href="https://travis-ci.org/profile">https://travis-ci.org/profile</a></p>
+
+<p>Enable travis support for your project listed there.</p>
+
+<p><img src="http://i.imgur.com/JY9o3xm.png" alt="Meteor Cluster - Travis Support"></p>
+
+<p>You can configure tests with two environment variables:</p>
+
+<ul>
+<li>
+<code>WORKING_DIR</code> -- working directory to run <code>meteor</code> from</li>
+<li>
+<code>PACKAGES</code> -- list of package names or directories to test, separated by <code>;</code>, by default <code>./</code>; specfiy empty string to test all packages</li>
+<li>
+<code>TEST_COMMAND</code> -- you can specify a custom command to run, instead of default <code>meteor</code>, it gets all the arguments <code>meteor</code> would; this is useful if you want to do some more pre- or post-processing</li>
+<li>
+<code>METEOR_RELEASE</code> -- you can specify the meteor release to run the tests with.</li>
+</ul>
+
+<p>If you would like to specify more arguments (such as <code>--settings</code>), create a simple shell script and pass the path to <code>TEST_COMMAND</code>.</p>
+
+<p>Create the following <code>travis.sh</code> (name not important):</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c">#!/bin/sh</span>
+meteor <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$@</span><span class="pl-pds">"</span></span> --settings test/settings.travis.json</pre></div>
+
+<p>Add the following environment variable to your <code>.travis.yml</code>:</p>
+
+<div class="highlight highlight-source-yaml"><pre><span class="pl-ent">env:</span> <span class="pl-s">TEST_COMMAND=./travis.sh</span></pre></div>
+
+<p>Be sure to set the executable flag on your new script:</p>
+
+<div class="highlight highlight-source-shell"><pre>$ chmod +x travis.sh</pre></div>
+
+<p>See <a href="http://meteorhacks.com/travis-ci-support-for-meteor-packages.html">here</a> for more information</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/grazies/travis-ci-meteor-packages">Travis-ci-meteor-packages</a> is maintained by <a href="https://github.com/grazies">grazies</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
